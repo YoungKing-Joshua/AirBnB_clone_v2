@@ -35,7 +35,7 @@ def do_deploy(archive_path):
         return False
     try:
         n_f = archive_path.split("/")[-1]
-        xt_re = file_n.split(".")[0]
+        xt_re = n_f.split(".")[0]
         rectory = "/data/web_static/releases/"
         put(archive_path, '/tmp/')
         run('mkdir -p {}{}/'.format(rectory, xt_re))
