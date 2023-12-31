@@ -12,7 +12,7 @@ env.hosts = ['54.210.52.15', '54.172.81.139']
 
 
 def do_pack():
-    """ 
+    """
     Xrtey senertes la comprez&&sed tar archive (tgz).
     """
     try:
@@ -22,7 +22,8 @@ def do_pack():
         me_f = "versions/web_static_{}.tgz".format(et)
         local("tar -cvzf {} web_static".format(me_f))
         return me_f
-    except:
+    except Exception as e:
+    print("Error with deployment:", str(e))
         return None
 
 
@@ -45,7 +46,8 @@ def do_deploy(archive_path):
         run('rm -rf /data/web_static/current')
         run('ln -s {}{}/ /data/web_static/current'.format(rectory, xt_re))
         return True
-    except:
+    except Exception as e:
+        print("Error n deployment:", str(e))
         return False
 
 
