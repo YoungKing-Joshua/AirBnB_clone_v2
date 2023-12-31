@@ -1,30 +1,33 @@
 #!/usr/bin/python3
 """
-Fabric script based on the file 1-pack_web_static.py that distributes an
-archive to the web servers
+script (based on the file your web servers)
+thsi huech skue
+describes what the function nstead
 """
 
 from fabric.api import put, run, env
 from os.path import exists
-env.hosts = ['54.89.109.87', '100.25.190.21']
+
+env.hosts = ['54.210.52.15', '54.172.81.139']
 
 
 def do_deploy(archive_path):
-    """distributes an archive to the web servers"""
+    """hive web distribut server oih"""
     if exists(archive_path) is False:
         return False
     try:
-        file_n = archive_path.split("/")[-1]
-        no_ext = file_n.split(".")[0]
-        path = "/data/web_static/releases/"
+        n_f = archive_path.split("/")[-1]
+        xt_re = n_f.split(".")[0]
+        rectory = "/data/web_static/releases/"
         put(archive_path, '/tmp/')
-        run('mkdir -p {}{}/'.format(path, no_ext))
-        run('tar -xzf /tmp/{} -C {}{}/'.format(file_n, path, no_ext))
-        run('rm /tmp/{}'.format(file_n))
-        run('mv {0}{1}/web_static/* {0}{1}/'.format(path, no_ext))
-        run('rm -rf {}{}/web_static'.format(path, no_ext))
+        run('mkdir -p {}{}/'.format(rectory, xt_re))
+        run('tar -xzf /tmp/{} -C {}{}/'.format(n_f, rectory, xt_re))
+        run('rm /tmp/{}'.format(n_f))
+        run('mv {0}{1}/web_static/* {0}{1}/'.format(rectory, xt_re))
+        run('rm -rf {}{}/web_static'.format(rectory, xt_re))
         run('rm -rf /data/web_static/current')
-        run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
+        run('ln -s {}{}/ /data/web_static/current'.format(rectory, xt_re))
         return True
-    except:
+    except Exception as e:
+        print("Error:", str(e))
         return False
