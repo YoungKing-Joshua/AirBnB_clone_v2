@@ -23,7 +23,7 @@ def do_pack():
         local("tar -cvzf {} web_static".format(me_f))
         return me_f
     except Exception as e:
-    print("Error with deployment:", str(e))
+        print("Error with deployment", str(e))
         return None
 
 
