@@ -1,26 +1,56 @@
 <!DOCTYPE html>
-<HTML lang="en">
-    <HEAD>
-        <TITLE>HBNB</TITLE>
-    </HEAD>
-    <BODY>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBNB - State Information</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h1, h3 {
+            color: #007BFF;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        b {
+            color: #28a745;
+        }
+
+        .not-found {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
     {% if state is mapping %}
-        <H1>States</H1>
-        <UL>
-        {% for s in state.values()|sort(attribute="name") %}
-            <LI>{{ s.id }}: <B>{{ s.name }}</B></LI>
-        {% endfor %}
-        </UL>
+        <h1>States</h1>
+        <ul>
+            {% for s in state.values()|sort(attribute="name") %}
+                <li>{{ s.id }}: <b>{{ s.name }}</b></li>
+            {% endfor %}
+        </ul>
     {% elif state is defined %}
-        <H1>State: {{ state.name }}</H1>
-        <H3>Cities:</H3>
-        <UL>
-        {% for city in state.cities|sort(attribute="name") %}
-            <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
-        {% endfor %}
-        </UL>
+        <h1>State: {{ state.name }}</h1>
+        <h3>Cities:</h3>
+        <ul>
+            {% for city in state.cities|sort(attribute="name") %}
+                <li>{{ city.id }}: <b>{{ city.name }}</b></li>
+            {% endfor %}
+        </ul>
     {% else %}
-        <H1>Not found!</H1>
+        <h1 class="not-found">Not found!</h1>
     {% endif %}
-    </BODY>
-</HTML>
+</body>
+</html>

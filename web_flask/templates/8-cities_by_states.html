@@ -1,20 +1,51 @@
 <!DOCTYPE html>
-<HTML lang="en">
-    <HEAD>
-        <TITLE>HBNB</TITLE>
-    </HEAD>
-    <BODY>
-        <H1>States</H1>
-        <UL>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbnb Clone - Explore Locations</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            color: #ff5a5f;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        b {
+            color: #0069d9;
+        }
+
+        ul.sub-list {
+            margin-top: 5px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Explore Airbnb Locations</h1>
+    <ul>
         {% for state in states.values()|sort(attribute="name") %}
-            <LI>{{ state.id }}: <B>{{ state.name }}</B>
-                <UL>
-                {% for city in state.cities|sort(attribute="name") %}
-                    <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
-                {% endfor %}
-                </UL>
-            </LI>
+            <li>{{ state.id }}: <b>{{ state.name }}</b>
+                <ul class="sub-list">
+                    {% for city in state.cities|sort(attribute="name") %}
+                        <li>{{ city.id }}: <b>{{ city.name }}</b></li>
+                    {% endfor %}
+                </ul>
+            </li>
         {% endfor %}
-        </UL>
-    </BODY>
-</HTML>
+    </ul>
+</body>
+</html>
